@@ -4,7 +4,7 @@
 // =============================================
 
 const CONFIG = {
-    WEB_APP_URL: "YOUR_APPS_SCRIPT_URL_HERE",
+    WEB_APP_URL: "https://script.google.com/macros/s/AKfycbxBoTEBrwmoYfVugWOXmDQmujsKe-EYPGC6xD8tdWy6kTjqXVS0s9drRVbSM5AZgDlFJg/exec",
     SHEET_NAMES: {
         SALES: "Sales",
         BUY:   "Buy"
