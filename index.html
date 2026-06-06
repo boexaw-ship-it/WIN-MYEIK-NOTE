@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinStore Note</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <meta name="theme-color" content="#FF6A00">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="app-header">
+        <img src="assets/images/logo.png" alt="Logo" class="app-logo">
+        <div class="app-title">WinStore Note</div>
+    </div>
+
+    <div class="main-container">
+
+        <!-- ══ ENTRY PAGE ══ -->
+        <div id="entry-page" class="app-page active">
+
+            <div class="type-selector-grid">
+                <div id="card-sell" class="type-card active" onclick="switchEntryType('Sales')">
+                    <div class="card-icon-wrapper sell-bg">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 2v14M17 11l-5-5-5 5M2 22h20"/>
+                        </svg>
+                    </div>
+                    <div class="card-label">📤 အရောင်းစာရင်း</div>
+                </div>
+                <div id="card-buy" class="type-card" onclick="switchEntryType('Buy')">
+                    <div class="card-icon-wrapper buy-bg">
+                        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 16V2M7 11l5 5 5-5M2 22h20"/>
+                        </svg>
+                    </div>
+                    <div class="card-label">📥 အဝယ်စာရင်း</div>
+                </div>
+            </div>
+
+            <div class="section-title">📦 ပစ္စည်းရွေးချယ်ရန်</div>
+            <div class="helper-text">ပစ္စည်းကို တစ်ချက်နှိပ်၍ ရွေးပါ</div>
+
+            <div class="items-list-container" id="entry-items-list"></div>
+
+            <div class="status-banner" id="entry-status">ရွေးချယ်ထားသည့်ပစ္စည်း: မရှိသေးပါ</div>
+
+            <div class="premium-input-card">
+                <div class="input-field">
+                    <label>📅 ရက်စွဲ</label>
+                    <input type="date" id="entry-date">
+                </div>
+                <div class="qty-unit-row">
+                    <div class="input-field">
+                        <label>🔢 အရေအတွက်</label>
+                        <input type="number" id="entry-qty" placeholder="0" min="0">
+                    </div>
+                    <div class="input-field">
+                        <label>⚖️ ယူနစ်</label>
+                        <select id="entry-unit"></select>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label>💰 ကျသင့်ငွေ (ကျပ်)</label>
+                    <input type="number" id="entry-total-price" placeholder="0" min="0">
+                </div>
+                <button class="premium-submit-btn" id="btn-submit" onclick="submitForm()">
+                    <span>💾 မှတ်တမ်းအသစ် သိမ်းဆည်းမည်</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ══ SALES VIEW PAGE ══ -->
+        <div id="sales-view-page" class="app-page">
+            <div class="dashboard-total-card sell-theme">
+                <div class="dash-label">TOTAL SALES / စုစုပေါင်းအရောင်း</div>
+                <div class="dash-amount" id="total-sales-amount">0</div>
+                <div class="dash-currency">MMK</div>
+            </div>
+
+            <div class="section-title">📊 ပစ္စည်းအလိုက် အရောင်းခြုံငုံ</div>
+            <div id="sales-summary-cards"></div>
+
+            <div class="section-title">📋 အရောင်းမှတ်တမ်းများ</div>
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>ရက်စွဲ</th>
+                            <th>ပစ္စည်း</th>
+                            <th>အရေအတွက်</th>
+                            <th>ကျသင့်ငွေ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ══ BUY VIEW PAGE ══ -->
+        <div id="buy-view-page" class="app-page">
+            <div class="dashboard-total-card buy-theme">
+                <div class="dash-label">TOTAL BUY / စုစုပေါင်းအဝယ်</div>
+                <div class="dash-amount" id="total-buy-amount">0</div>
+                <div class="dash-currency">MMK</div>
+            </div>
+
+            <div class="section-title">📋 အဝယ်မှတ်တမ်းများ</div>
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>ရက်စွဲ</th>
+                            <th>ပစ္စည်း</th>
+                            <th>အရေအတွက်</th>
+                            <th>ကျသင့်ငွေ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="buy-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ══ BOTTOM NAV ══ -->
+    <div class="modern-bottom-nav">
+        <div class="nav-item active" id="tab-entry" onclick="navigateTo('entry')">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            <span>စာရင်းသွင်း</span>
+        </div>
+        <div class="nav-item" id="tab-sales-view" onclick="navigateTo('sales-view')">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2v14M17 11l-5-5-5 5M2 22h20"/>
+            </svg>
+            <span>အရောင်းပြရန်</span>
+        </div>
+        <div class="nav-item" id="tab-buy-view" onclick="navigateTo('buy-view')">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 16V2M7 11l5 5 5-5M2 22h20"/>
+            </svg>
+            <span>အဝယ်ပြရန်</span>
+        </div>
+    </div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/calendar.js"></script>
+    <script src="assets/js/sheets.js"></script>
+    <script src="assets/js/sales.js"></script>
+    <script src="assets/js/buy.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+</html>
