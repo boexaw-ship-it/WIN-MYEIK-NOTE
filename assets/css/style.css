@@ -43,6 +43,7 @@ body {
     box-shadow: 0 4px 16px rgba(255,106,0,0.3);
     position: relative;
     overflow: hidden;
+    z-index: 20;
 }
 .app-header::after {
     content: '';
@@ -72,20 +73,72 @@ body {
     max-width: 480px;
     width: 100%;
     margin: 0 auto;
-    padding: 16px 16px 90px;
     flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
+/* ── PAGES ── */
 .app-page        { display: none; }
 .app-page.active { display: block; }
 
+/* ── ENTRY PAGE scroll ── */
+#entry-page {
+    padding: 16px 16px 90px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+}
+#entry-page.active { display: block; }
+
+/* ── VIEW PAGES: sticky total + scroll ── */
+#sales-view-page,
+#buy-view-page {
+    height: 100%;
+    overflow: hidden;
+}
+#sales-view-page.active,
+#buy-view-page.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.sticky-total-bar {
+    flex-shrink: 0;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.view-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px 16px 90px;
+    min-height: 0;
+}
+
+/* ── DASHBOARD TOTAL CARD (sticky bar) ── */
+.dashboard-total-card {
+    padding: 14px 20px;
+    margin-bottom: 0;
+    text-align: center;
+}
+.sell-theme { background: linear-gradient(135deg, #FF822E, #FF6A00); }
+.buy-theme  { background: linear-gradient(135deg, #00C887, #00B074); }
+.dash-label    { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.5px; }
+.dash-amount   { font-size: 1.8rem; font-weight: 900; color: #FFF; margin: 2px 0; }
+.dash-currency { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.8); }
+
+/* ── SECTION TITLE ── */
 .section-title {
     font-size: 1.05rem;
     font-weight: 800;
     color: var(--text-heading);
-    margin: 18px 0 6px;
+    margin: 14px 0 6px;
 }
 .helper-text {
     font-size: 0.88rem;
@@ -236,19 +289,6 @@ body {
 }
 .premium-submit-btn:active { transform: scale(0.98); opacity: 0.9; }
 
-/* ── DASHBOARD TOTAL CARD ── */
-.dashboard-total-card {
-    border-radius: 18px;
-    padding: 20px;
-    margin-bottom: 16px;
-    text-align: center;
-}
-.sell-theme { background: linear-gradient(135deg, #FF822E, #FF6A00); }
-.buy-theme  { background: linear-gradient(135deg, #00C887, #00B074); }
-.dash-label    { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.5px; }
-.dash-amount   { font-size: 2rem; font-weight: 900; color: #FFF; margin: 4px 0; }
-.dash-currency { font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.8); }
-
 /* ── ACCORDION CARDS (Sales by item) ── */
 .acc-card {
     background: var(--surface);
@@ -286,7 +326,7 @@ body {
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
-.acc-card.open .acc-body { max-height: 1000px; }
+.acc-card.open .acc-body { max-height: 2000px; }
 
 .acc-detail-header {
     display: grid;
@@ -318,7 +358,12 @@ body {
     border-radius: 14px;
     overflow: hidden;
 }
-.modern-table thead { background: #F1F5F9; }
+.modern-table thead {
+    background: #F1F5F9;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
 .modern-table th {
     padding: 12px 14px;
     text-align: left;
@@ -326,6 +371,7 @@ body {
     font-weight: 800;
     color: var(--text-muted);
     letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 .modern-table td {
     padding: 12px 14px;
@@ -333,12 +379,14 @@ body {
     font-weight: 600;
     color: var(--text-heading);
     border-top: 1px solid var(--border);
+    white-space: nowrap;
 }
 .empty-td {
     text-align: center;
     color: var(--text-muted);
     padding: 30px !important;
     font-weight: 700;
+    white-space: normal !important;
 }
 .empty-text {
     text-align: center;
