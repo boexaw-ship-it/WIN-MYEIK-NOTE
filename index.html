@@ -74,52 +74,58 @@
 
         <!-- ══ SALES VIEW PAGE ══ -->
         <div id="sales-view-page" class="app-page">
-            <div class="dashboard-total-card sell-theme">
-                <div class="dash-label">TOTAL SALES / စုစုပေါင်းအရောင်း</div>
-                <div class="dash-amount" id="total-sales-amount">0</div>
-                <div class="dash-currency">MMK</div>
+            <div class="sticky-total-bar">
+                <div class="dashboard-total-card sell-theme">
+                    <div class="dash-label">TOTAL SALES / စုစုပေါင်းအရောင်း</div>
+                    <div class="dash-amount" id="total-sales-amount">0</div>
+                    <div class="dash-currency">MMK</div>
+                </div>
             </div>
+            <div class="view-scroll-area">
+                <div class="section-title">📊 ပစ္စည်းအလိုက် အရောင်းခြုံငုံ</div>
+                <div id="sales-summary-cards"></div>
 
-            <div class="section-title">📊 ပစ္စည်းအလိုက် အရောင်းခြုံငုံ</div>
-            <div id="sales-summary-cards"></div>
-
-            <div class="section-title">📋 အရောင်းမှတ်တမ်းများ</div>
-            <div class="table-container">
-                <table class="modern-table">
-                    <thead>
-                        <tr>
-                            <th>ရက်စွဲ</th>
-                            <th>ပစ္စည်း</th>
-                            <th>အရေအတွက်</th>
-                            <th>ကျသင့်ငွေ</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sales-table-body"></tbody>
-                </table>
+                <div class="section-title">📋 အရောင်းမှတ်တမ်းများ</div>
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ရက်စွဲ</th>
+                                <th>ပစ္စည်း</th>
+                                <th>အရေအတွက်</th>
+                                <th>ကျသင့်ငွေ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-table-body"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <!-- ══ BUY VIEW PAGE ══ -->
         <div id="buy-view-page" class="app-page">
-            <div class="dashboard-total-card buy-theme">
-                <div class="dash-label">TOTAL BUY / စုစုပေါင်းအဝယ်</div>
-                <div class="dash-amount" id="total-buy-amount">0</div>
-                <div class="dash-currency">MMK</div>
+            <div class="sticky-total-bar">
+                <div class="dashboard-total-card buy-theme">
+                    <div class="dash-label">TOTAL BUY / စုစုပေါင်းအဝယ်</div>
+                    <div class="dash-amount" id="total-buy-amount">0</div>
+                    <div class="dash-currency">MMK</div>
+                </div>
             </div>
-
-            <div class="section-title">📋 အဝယ်မှတ်တမ်းများ</div>
-            <div class="table-container">
-                <table class="modern-table">
-                    <thead>
-                        <tr>
-                            <th>ရက်စွဲ</th>
-                            <th>ပစ္စည်း</th>
-                            <th>အရေအတွက်</th>
-                            <th>ကျသင့်ငွေ</th>
-                        </tr>
-                    </thead>
-                    <tbody id="buy-table-body"></tbody>
-                </table>
+            <div class="view-scroll-area">
+                <div class="section-title">📋 အဝယ်မှတ်တမ်းများ</div>
+                <div class="table-container">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ရက်စွဲ</th>
+                                <th>ပစ္စည်း</th>
+                                <th>အရေအတွက်</th>
+                                <th>ကျသင့်ငွေ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="buy-table-body"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
