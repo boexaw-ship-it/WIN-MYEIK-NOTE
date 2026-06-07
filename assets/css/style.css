@@ -86,7 +86,7 @@ body {
 
 /* ── ENTRY PAGE scroll ── */
 #entry-page {
-    padding: 16px 16px 90px;
+    padding: 16px 16px calc(120px + env(safe-area-inset-bottom, 20px));
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -117,7 +117,7 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    padding: 14px 16px calc(80px + env(safe-area-inset-bottom, 16px));
+    padding: 14px 16px calc(120px + env(safe-area-inset-bottom, 20px));
     min-height: 0;
 }
 
