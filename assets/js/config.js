@@ -32,7 +32,7 @@ const BUY_ITEMS = [
     { name: "ရေခူ",               units: ["ပိဿာ", "ကျပ်သား"] },
     { name: "တန်ဆာခ (Myein)",      units: ["ပိဿာ", "ကျပ်သား"] },
     { name: "တန်ဆာခ (Taxi)",       units: ["ပိဿာ", "ကျပ်သား"] },
-    { name: "တန်ဆာခ (Delivery)",   units: ["ပိဿာ", "ကျပ်သား"] },
+    { name: "တန်ဆာခ (Delivery)",   units:["Time"] },
     { name: "ပလတ်စတစ်အိတ်",     units: ["ပါကင်"] },
     { name: "ပလတ်စတစ်ဗူး",      units: ["ဗူး"] }
 ];
